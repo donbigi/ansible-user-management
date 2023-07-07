@@ -15,7 +15,7 @@ Before you begin, ensure that you have the following prerequisites installed:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/donbigi/ansible-user-management.git
    ```
 
 2. Navigate to the cloned repository directory:
