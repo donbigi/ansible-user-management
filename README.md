@@ -94,13 +94,13 @@ terraform destroy
 
 Confirm the deletion by entering `yes` when prompted.
 
-## Manually Validate the Playbook
+## (optional) Manually Validate the Playbook
 
-After applying ansible playbook, you should get a final output that looks like this:
+if you followed the guide to create ansible playbook, you should get a final output that looks like this:
 ```bash
 my-ubuntu-instance         : ok=11   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
-if you want to verify mannualy, follow the instructions bellow
+if you are still curious and want to verify mannualy, follow the instructions bellow
 
 On the Gcould cloud shell run, SSH to the VM:
 ```bash
