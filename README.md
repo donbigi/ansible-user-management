@@ -82,7 +82,7 @@ Before you begin, ensure that you have the following prerequisites installed:
 
 ## Customization
 
-Feel free to customize the Terraform configuration in the `terraform/main.tf` file and the Ansible playbook in the `ansible/ansible.yml` file according to your requirements.
+Customize the Terraform configuration in the `terraform/main.tf` file and the Ansible playbook in the `ansible/ansible.yml` file according to your requirements.
 
 ## Cleanup
 
@@ -93,3 +93,37 @@ terraform destroy
 ```
 
 Confirm the deletion by entering `yes` when prompted.
+
+## Manually Validate the Playbook
+
+After applying ansible playbook, you should get a final output that looks like this:
+```bash
+my-ubuntu-instance         : ok=11   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+if you want to verify mannualy, follow the instructions bellow
+
+On the Gcould cloud shell run, SSH to the VM:
+```bash
+gcloud compute ssh example-instance --zone=us-central1-a
+```
+
+Check the /etc/skel for the script:
+```bash
+ls /etc/skel
+```
+check if user john was created:
+```bash
+cat /etc/passwd | grep -i john
+```
+
+check for superuser: 
+```bash
+sudo cat /etc/sudoers | grep -i john ALL=(ALL:ALL) ALL
+```
+
+check if vim, tmux and terraform was installed:
+```bash
+vim \
+tmux \
+terraform --version
+```
