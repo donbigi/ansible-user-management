@@ -2,6 +2,13 @@
 
 This repository provides an example of how to provision an Ubuntu VM on Google Cloud Platform (GCP) using Terraform and then execute an Ansible playbook on the provisioned instance.
 
+## Information on Chosen Linux Distribution
+
+- Name: Ubuntu linux 20.04 LTS
+- Machine Type: e2-medium
+- Linux distro was created on GCP Compute Engine
+- The Compute Engine instance was created using terraform
+
 ## Prerequisites
 
 Before you begin, ensure that you have the following prerequisites installed:
