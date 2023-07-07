@@ -1,0 +1,64 @@
+---
+- name: Setup nice-script.sh and configure user, install packages, and Terraform CLI
+  hosts: all
+  remote_user: ansible
+  become: true
+
+  tasks:
+    - name: Create nice-script.sh locally
+      copy:
+        content: |
+          #!/bin/bash
+          mount
+        dest: "nice-script.sh"
+        mode: 0755
+
+    - name: Copy nice-script.sh to skeleton directory
+      copy:
+        src: "nice-script.sh"
+        dest: /etc/skel/nice-script.sh
+        mode: 0755
+        remote_src: true
+
+    - name: Create /better-place directory
+      file:
+        path: /better-place
+        state: directory
+        mode: 0755
+
+    - name: Create user john
+      user:
+        name: john
+        home: /better-place/john
+        uid: 1234
+
+    - name: Allow john to run whoami with sudo without password
+      lineinfile:
+        path: /etc/sudoers
+        line: 'john ALL=(ALL) NOPASSWD: /usr/bin/whoami'
+        validate: 'visudo -cf %s'
+        state: present
+      become: true
+
+    - name: Install Tmux and Vim
+      package:
+        name:
+          - tmux
+          - vim
+        state: present
+
+    - name: Add HashiCorp GPG key
+      shell: "wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg"
+
+    - name: Add HashiCorp repository
+      shell: |
+        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+    - name: Update apt repositories
+      apt:
+        update_cache: yes
+
+    - name: Install Terraform
+      apt:
+        name: terraform
+        state: present
