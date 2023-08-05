@@ -1,6 +1,6 @@
-# Provisioning an Ubuntu VM with Terraform and Running Ansible Playbook
+# Provisioning Ubuntu VMs with Terraform and Running Ansible Playbook
 
-This repository provides an example of how to provision an Ubuntu VM on Google Cloud Platform (GCP) using Terraform and then execute an Ansible playbook on the provisioned instance.
+This repository provides an example of how to provision Ubuntu VMs on Google Cloud Platform (GCP) using Terraform and then execute an Ansible playbook on the provisioned instance.
 
 ## Information on Chosen Linux Distribution
 
