@@ -60,6 +60,8 @@ Before you begin, ensure that you have the following prerequisites installed:
    - Terraform will provision the Ubuntu VM on GCP. Note down the external IP address of the VM.
 
 5. Configure Ansible and execute the playbook:
+   The playbook adds a script to the new user's skeleton directory, creates a user with admin privileges, and installs vim, tmux, and terraform on the 3 provisioned instances.
+
 
    - While still in the  `ansible-user-management` directory:
 
